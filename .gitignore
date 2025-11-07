@@ -1,2 +1,33 @@
-# build artifacts
-/build
+# Build directories
+/build/
+/cmake-build-debug/
+/cmake-build-release/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Executables + object files
+*.out
+*.exe
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.lib
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.code-workspace
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# Logs + temporary files
+*.log
+*.tmp

@@ -1,7 +1,6 @@
 #ifndef BULLETPOOL_HPP
 #define BULLETPOOL_HPP
 
-#include "Bullet.hpp"
 #include "CustomAllocator.hpp"
 
 /**
