@@ -1,3 +1,0 @@
-/Users/divitkalathil/Downloads/CSC481-581_Memory_Management/build/CMakeFiles/CustomAllocatorDemo.dir
-/Users/divitkalathil/Downloads/CSC481-581_Memory_Management/build/CMakeFiles/edit_cache.dir
-/Users/divitkalathil/Downloads/CSC481-581_Memory_Management/build/CMakeFiles/rebuild_cache.dir
