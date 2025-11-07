@@ -10,7 +10,6 @@ This project demonstrates **custom memory allocation** for game objects using a 
 * **LO 3:** Use index-based handles instead of raw pointers
 * **LO 4:** Design memory pools for real-time game systems
 
----
 
 ## Core Concepts
 
@@ -48,7 +47,6 @@ b->~Bullet();              // Call destructor
 allocator.freeSlot(id);    // Free the memory slot
 ```
 
----
 
 ## Your Task
 
@@ -89,7 +87,6 @@ You must have **SDL3** installed:
 * **Linux (Debian/Ubuntu):** `sudo apt update && sudo apt install libsdl3-dev`
 * **Windows (MSYS2):** `pacman -S mingw-w64-ucrt-x86_64-SDL3`
 
----
 
 ## How to Build and Run
 
@@ -121,7 +118,6 @@ make
 * **Left Mouse Click**: Spawn bullets toward cursor
 * **ESC or Close Window**: Quit
 
----
 
 ## Understanding the Output
 
@@ -137,79 +133,12 @@ BulletPool FULL! Cannot spawn more bullets.
 Failed to spawn bullet - pool is full!
 ```
 
----
-
-## Common Student Questions
-
-### Q: Why not just use `new` and `delete`?
-**A:** In games, we spawn thousands of objects per second. Each `new` is a system call that searches the heap - very slow! Pools allocate once and reuse memory.
-
-### Q: What happens if I forget to call the destructor?
-**A:** Memory leaks! The slot becomes free, but the object's resources (if any) aren't cleaned up.
-
-### Q: Why use IDs instead of pointers?
-**A:** Pointers become invalid if we reorganize memory. IDs stay valid - we convert ID→pointer on-demand.
-
-### Q: Can I store different object types in one pool?
-**A:** Yes, but slotSize must be `max(sizeof(TypeA), sizeof(TypeB))`. Better to use separate pools per type.
-
----
-
-## Real-World Applications
-
-This pattern is used in:
-- **Unity**: Entity Component System (ECS)
-- **Unreal Engine**: Object pooling for particles, projectiles
-- **AAA Games**: All gameplay objects (enemies, bullets, pickups)
-- **Physics Engines**: Contact points, collision data
-- **Rendering**: Draw commands, vertex buffers
-
-### Industry Quote
-> "In a modern game engine, you should almost never call `new` during gameplay."  
-> — John Carmack, id Software
-
----
-
 ## Performance Comparison
 
 | Method | Cycles per Allocation | Cache Friendly | Fragmentation |
 |--------|----------------------|----------------|---------------|
 | `new`/`delete` | ~500-1000 | No | Yes |
 | Memory Pool | ~50-100 | Yes | No |
-
-**Speed improvement: 10-20x faster!** 🚀
-
----
-
-## Advanced Challenges
-
-### Challenge 1: Free List Optimization
-Instead of linear search for free slots, maintain a linked list of free indices:
-```cpp
-int freeListHead = 0;
-int nextFree[100] = {1, 2, 3, 4, ...};
-```
-
-### Challenge 2: Multiple Pools
-Create a `PoolManager` that handles multiple pools for different object types.
-
-### Challenge 3: Defragmentation
-Implement a `compact()` function that moves active objects to the front of memory.
-
----
-
-## Summary
-
-You've learned how professional game engines manage memory:
-1. **Allocate upfront** - one big block at startup
-2. **Use placement new** - construct objects at specific addresses  
-3. **Track with IDs** - avoid pointer invalidation
-4. **Manual lifetime** - explicit control over construction/destruction
-5. **Cache-friendly** - all objects in contiguous memory
-
-This same pattern scales from indie games to AAA titles. Master it, and you understand a core pillar of game engine architecture.
-
----
 
 ## Troubleshooting
 
